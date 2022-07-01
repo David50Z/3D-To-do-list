@@ -1,8 +1,18 @@
 .App {
-  text-align: center;
+  /text-align: center;
 }
 
 canvas {
   height: 100vh;
-  background: rgb(0, 0, 0)
+  background: rgb(0, 0, 0);
+  z-index: -100;
+}
+
+
+
+ToDoPage {
+  position: relative;
+  z-index: 50;
+  font-size: 20;
+  color: red;
 }

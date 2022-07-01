@@ -28,12 +28,12 @@ const Cube = ({position, texture, ...props}) => {
         onPointerOut={() => {
             setHover(null)
         }}
-
+        
         onClick={(e) => {
             e.stopPropagation()
             const clickedFace = Math.floor(e.faceIndex / 2)
             const {x, y, z} = ref.current.position
-            console.log(z)
+            //console.log(z)
             if(clickedFace == 0){
                 e.altKey ? removeCube(x,y,z) : addCube(x + 1, y, z, activeTexture)
                 return
@@ -66,7 +66,7 @@ const Cube = ({position, texture, ...props}) => {
             map={textures[texture]}
             key={index}
             color={hover != null ? "grey" : "white"}
-
+            
             />
     ))}
             <boxBufferGeometry attach="geometry"  />

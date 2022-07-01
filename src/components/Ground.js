@@ -23,7 +23,7 @@ export const Ground = (props) => {
             const [t,x,y,z] = Object.values(e.point).map((coord) =>
             Math.ceil(coord),
             )
-            console.log(x)
+            //console.log(x)
             addCube(x, y, z, activeTexture)
         }}>
             <planeBufferGeometry attach='geometry' args={[100, 100]} />

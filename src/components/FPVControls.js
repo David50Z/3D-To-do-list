@@ -9,9 +9,17 @@ const FPVControls = (props) => {
     const controls = useRef()
 
 useEffect(() => {
-    document.addEventListener("click", () => {
+    function screenLock(key) {
+        if(key.keyCode == 17) {
+            controls.current.lock()
+        }
+    }
+
+    document.addEventListener("keydown", screenLock, false)
+
+    /*document.addEventListener("click", () => {
         controls.current.lock()
-    })
+    })*/
 }, [])
 
     return (
