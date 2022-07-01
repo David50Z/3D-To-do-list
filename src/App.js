@@ -59,6 +59,9 @@ function App() {
   //const [timeoutTruthy, setTimeoutTruthy] = useState(false)
   const [headerStyle, setHeaderStyle] = useState({display: 'none'})
   const [boxStyle, setBoxStyle] = useState({display: 'none'})
+  const [move, setMove] = useState(true)
+
+  const [number, setNumber] = useState(0)
 
 
   let h1Style = {}
@@ -70,7 +73,7 @@ function App() {
     divStyle = {display: 'none'}
   } else {
   h1Style = {
-    color: 'red',
+    color: 'black',
     zIndex: 90,
     position: 'relative',
     textAlign: 'center',
@@ -87,8 +90,8 @@ function App() {
     paddingLeft: '25%',
     paddingRight: '25%',
     paddingTop: '87vh',
-    backgroundColor: 'black',
-    opacity: 0.5
+    backgroundColor: 'white',
+    opacity: 1
     
   }
 }
@@ -97,10 +100,12 @@ function App() {
 
   function showtoDoPage() {
     setToDoTruthy(true)
+    setMove(false)
   }
 
   function collapsetoDoPage() {
     setToDoTruthy(false)
+    setMove(true)
   }
 
 
@@ -120,7 +125,7 @@ function App() {
 
   return (
     <div className="App">
-    <ToDoPage h1Style={h1Style} divStyle={divStyle} collapsetoDoPage={collapsetoDoPage} />
+    <ToDoPage h1Style={h1Style} divStyle={divStyle} collapsetoDoPage={collapsetoDoPage} number={number} setNumber={setNumber} />
       <Canvas className='Canvas1'>
       <Sky sunPosition={[100, 20, 100]} />
       <ambientLight intensity={0.25} />
@@ -135,7 +140,7 @@ function App() {
 
       
         <Ground position={[0, 0.5, 0]} />
-        <Player position={[0, 3, 10]} />
+        <Player position={[0, 3, 10]} move={move} />
         <House  scale={0.3} position={[0,0.5, 0]} onClick={showtoDoPage} />
         {cubes.map((cube) => (
           <Cube position={cube.pos} key={nanoid()} texture={cube.texture} />

@@ -18,14 +18,14 @@ export const Ground = (props) => {
 
     return (
         <mesh ref={ref} receiveShadow
-        onClick={(e) => {
+        /*onClick={(e) => {
             e.stopPropagation()
             const [t,x,y,z] = Object.values(e.point).map((coord) =>
             Math.ceil(coord),
             )
             //console.log(x)
             addCube(x, y, z, activeTexture)
-        }}>
+        }}*/>
             <planeBufferGeometry attach='geometry' args={[100, 100]} />
             <meshStandardMaterial map={texture} attach="material" />
         </mesh>

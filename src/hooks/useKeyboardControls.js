@@ -22,7 +22,7 @@ function textureByKey(key) {
   };
   return keys[key];
 }
-const useKeyboardControls = () => {
+const useKeyboardControls = (props) => {
   const [movement, setMovement] = useState({
     moveForward: false,
     moveBackward: false,
@@ -57,6 +57,7 @@ const useKeyboardControls = () => {
 
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('keyup', handleKeyUp);
+    
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);

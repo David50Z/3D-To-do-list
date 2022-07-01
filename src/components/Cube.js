@@ -29,7 +29,7 @@ const Cube = ({position, texture, ...props}) => {
             setHover(null)
         }}
         
-        onClick={(e) => {
+        /*onClick={(e) => {
             e.stopPropagation()
             const clickedFace = Math.floor(e.faceIndex / 2)
             const {x, y, z} = ref.current.position
@@ -58,7 +58,7 @@ const Cube = ({position, texture, ...props}) => {
                 e.altKey ? removeCube(x,y,z) : addCube(x, y, z - 1, activeTexture)
                 return
             }
-        }}
+        }}*/
     >
     {[...Array(6)].map((_,index) => (
         <meshStandardMaterial

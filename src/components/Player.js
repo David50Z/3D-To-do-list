@@ -10,6 +10,7 @@ const SPEED = 7
 
 
 const Player = (props) => {
+    let move = props.move
     const { camera } = useThree();
     const { moveForward, moveBackward, moveLeft, moveRight, jump } =
       useKeyboardControls();
@@ -28,8 +29,9 @@ const Player = (props) => {
     const pos = useRef([0, 0, 0]);
     useEffect(() => api.position.subscribe((v) => (pos.current = v)), [api.position]);
     //Look up subscribe
-  
+
     useFrame(() => {
+      if(move === true) {
       camera.position.copy(
         new Vector3(pos.current[0], pos.current[1], pos.current[2])
       );
@@ -57,7 +59,8 @@ const Player = (props) => {
       if (jump && Math.abs(velocity.current[1].toFixed(2)) < 0.01) {
         api.velocity.set(velocity.current[0], 15, velocity.current[2]);
       }
-    });
+    }});
+    //console.log(move)
     return (
       <>
       <FPVcontrols />
@@ -65,6 +68,7 @@ const Player = (props) => {
       </>
     );
   };
+
 
   export default Player
 
