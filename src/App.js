@@ -61,11 +61,19 @@ function App() {
     state.saveWorld
   ])
 
+
+  let savedModels =  JSON.parse(window.localStorage.getItem("world")) || [{list: [], index: 0}]
+  console.log(window.localStorage.getItem("world"))
+
+
+
   const [toDoTruthy, setToDoTruthy] = useState(false)
   const [chooseTruthy, setChooseTruthy] = useState(false)
 
   const [move, setMove] = useState(true)
-  const [models, setModels] = useState([{list: [], index: 0}])
+  const [models, setModels] = useState(savedModels)
+
+  console.log(localStorage)
 
   const [number, setNumber] = useState(0)
 
@@ -82,6 +90,25 @@ function App() {
   //console.log(updatedList)
   //console.log(chosenList)
   //console.log(models.length)
+
+
+
+    //const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key))
+
+  console.log(models)
+
+    const setLocalStorage = (key, value) =>
+    window.localStorage.setItem(key, JSON.stringify(value))
+
+
+  useInterval(() =>{
+    window.localStorage.setItem("world", JSON.stringify(models))
+    //saveWorld(models)
+    console.log('saved')
+  }, 10000)
+
+
+
 
   let h1Style = {}
 
@@ -144,10 +171,7 @@ function App() {
 
 
   
-  /*useInterval(() =>{
-    saveWorld(cubes)
-    console.log('saved')
-  }, 10000)*/
+
 
 
   /*useEffect(() => {
@@ -192,10 +216,10 @@ function App() {
         />
         <Player position={[0, 3, 10]} move={move} />
         <House  scale={0.3} position={[10.01,0.5, 0]} onClick={showtoDoPage} />
-        {cubes.map((cube) => (
+        {/*cubes.map((cube) => (
           <Cube position={cube.pos} key={nanoid()} texture={cube.texture} />
           
-        ))}
+        ))*/}
 
         {models.map((item, index) => {
           if(item.model === 1) {
