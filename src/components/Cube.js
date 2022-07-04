@@ -4,17 +4,18 @@ import * as textures from '../textures';
 import axios from 'axios';
 import {useStore} from '../hooks/useStore'
 
-const Cube = ({position, texture, ...props}) => {
+const Cube = ({position, scale, texture, ...props}) => {
     const [hover, setHover] = useState(null)
-    const [addCube, removeCube, activeTexture] = useStore((state) => [
+    const [addCube, addModel, removeCube, activeTexture] = useStore((state) => [
         state.addCube,
         state.removeCube,
-        state.texture
+        state.texture,
     ]) 
     const [ref, api] = useBox(() => ({
         type: 'Static',
         mass: 1,
         position,
+        scale,
         ...props
     }))
 
@@ -29,7 +30,7 @@ const Cube = ({position, texture, ...props}) => {
             setHover(null)
         }}
         
-        /*onClick={(e) => {
+        onClick={(e) => {
             e.stopPropagation()
             const clickedFace = Math.floor(e.faceIndex / 2)
             const {x, y, z} = ref.current.position
@@ -58,7 +59,7 @@ const Cube = ({position, texture, ...props}) => {
                 e.altKey ? removeCube(x,y,z) : addCube(x, y, z - 1, activeTexture)
                 return
             }
-        }}*/
+        }}
     >
     {[...Array(6)].map((_,index) => (
         <meshStandardMaterial

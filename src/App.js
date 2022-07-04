@@ -26,7 +26,6 @@ export default App;
 */
 
 import React, {Suspense, useRef, useState, useEffect} from 'react';
-import logo from './logo.svg';
 import './App.css';
 //import Box from './components/Box';
 import Cube from './components/Cube'
@@ -34,16 +33,23 @@ import {Ground} from './components/Ground'
 import Player from './components/Player'
 
 import {Canvas} from "@react-three/fiber"
-import { OrbitControls, Stars, Sky, useGLTF } from '@react-three/drei';
-import { Physics, Debug, usePlane, useBox, useSphere } from "@react-three/cannon";
+import {Stars, Sky, useGLTF } from '@react-three/drei';
+import { Physics} from "@react-three/cannon";
 import {TextureLoader, RepeatWrapping} from 'three';
 import {useStore} from './hooks/useStore'
 import {useInterval} from './hooks/useInterval'
 import {nanoid} from 'nanoid'
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
 import axios from 'axios';
-import House from './components/House';
-import ToDoPage from './components/ToDoPage';
+
+import ChooseModel from './components/ChooseModel';
+import ToDoPage from './components/childComponents/ToDoPage';
+
+import House from './components/models/House'; 
+import Desk from './components/models/Desk'
+import Hut from './components/models/Hut'
+import Choose from './components/models/Choose'
+
 
 
 
@@ -56,13 +62,26 @@ function App() {
   ])
 
   const [toDoTruthy, setToDoTruthy] = useState(false)
-  //const [timeoutTruthy, setTimeoutTruthy] = useState(false)
-  const [headerStyle, setHeaderStyle] = useState({display: 'none'})
-  const [boxStyle, setBoxStyle] = useState({display: 'none'})
+  const [chooseTruthy, setChooseTruthy] = useState(false)
+
   const [move, setMove] = useState(true)
+  const [models, setModels] = useState([{list: [], index: 0}])
 
   const [number, setNumber] = useState(0)
 
+  const [bool, setBool] = useState(false)
+
+  
+
+  const [userChoice, setUserChoice] = useState(0)
+  const [chosenList, setChosenList] = useState([{list: [], index: 0}])
+
+  const [updatedList, setUpdatedList] = useState('not updated')
+  //const [toDos, setToDos] = useState(chosenList[0].list)
+
+  //console.log(updatedList)
+  //console.log(chosenList)
+  //console.log(models.length)
 
   let h1Style = {}
 
@@ -98,15 +117,30 @@ function App() {
 
 
 
+
+
   function showtoDoPage() {
     setToDoTruthy(true)
     setMove(false)
   }
 
   function collapsetoDoPage() {
+    let changedModel = models
+    console.log(chosenList[0])
+    console.log(changedModel)
+    changedModel[chosenList[0].index].list = chosenList[0].list 
+    setModels(changedModel)
     setToDoTruthy(false)
     setMove(true)
+
   }
+
+  function showChoosePage() { 
+    setChooseTruthy(true)
+    setMove(false)
+  }
+
+  
 
 
   
@@ -123,29 +157,71 @@ function App() {
    },[]);*/
   
 
+
   return (
     <div className="App">
-    <ToDoPage h1Style={h1Style} divStyle={divStyle} collapsetoDoPage={collapsetoDoPage} number={number} setNumber={setNumber} />
+    <ToDoPage 
+    h1Style={h1Style} 
+    divStyle={divStyle} 
+    collapsetoDoPage={collapsetoDoPage} 
+    number={number} 
+    setNumber={setNumber} 
+    chosenList={chosenList}
+    setChosenList={setChosenList}
+    models={models} 
+    setModels={setModels}
+
+    />
+    <ChooseModel 
+        chooseTruthy={chooseTruthy}
+        setChooseTruthy={setChooseTruthy}
+
+        userChoice={userChoice}
+        setUserChoice={setUserChoice}
+
+        move={move}
+        setMove={setMove}
+         />
       <Canvas className='Canvas1'>
-      <Sky sunPosition={[100, 20, 100]} />
+      
       <ambientLight intensity={0.25} />
-      <pointLight position={[100, 100, 100]} castShadow intensity={0.7} />
-
-      <Suspense fallback={null}>
-        
-      </Suspense>
-
+      <pointLight position={[100, 100, 100]} castShadow intensity={0.7} color={'blue'} />
       <Physics gravity={[0, -30, 0]} >
       
-
-      
-        <Ground position={[0, 0.5, 0]} />
+        <Ground position={[0, 0.5, 0] } models={models} setModels={setModels} userChoice={userChoice} setUserChoice={setUserChoice}
+        />
         <Player position={[0, 3, 10]} move={move} />
-        <House  scale={0.3} position={[0,0.5, 0]} onClick={showtoDoPage} />
+        <House  scale={0.3} position={[10.01,0.5, 0]} onClick={showtoDoPage} />
         {cubes.map((cube) => (
           <Cube position={cube.pos} key={nanoid()} texture={cube.texture} />
           
         ))}
+
+        {models.map((item, index) => {
+          if(item.model === 1) {
+            return <House onClick={() => {
+
+              //console.log(item)
+              setUpdatedList('updated')
+              showtoDoPage()
+              setChosenList([item])
+              //setToDos(item)
+              
+              }} scale={0.3} position={[item.x, item.y - 0.5, item.z]} />
+          } else if(item.model === 2) {
+            return <Desk onClick={() => {
+              showtoDoPage()
+              setChosenList([item])
+            }} scale={0.025} position={[item.x, item.y - 0.5, item.z]} />
+          }
+        })}
+
+        <Choose  position={[0, 2, 0]} scale={1} onClick={showChoosePage} />
+
+
+        <Hut position={[0, 8.5, 0]} scale={0.7} />
+
+        <Stars />
 
       </Physics>
       </Canvas>
