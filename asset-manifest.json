@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/3D-To-do-list/static/css/main.171ee2af.css",
-    "main.js": "/3D-To-do-list/static/js/main.c81f8b1e.js",
+    "main.js": "/3D-To-do-list/static/js/main.2321ad43.js",
     "static/js/787.c1ea96ef.chunk.js": "/3D-To-do-list/static/js/787.c1ea96ef.chunk.js",
     "static/media/Wood texture.jpg": "/3D-To-do-list/static/media/Wood texture.80fa87fa123559225d4d.jpg",
     "static/media/Grass texture.jpg": "/3D-To-do-list/static/media/Grass texture.ae09b4e25401e692f958.jpg",
     "static/media/Dirt texture.jpg": "/3D-To-do-list/static/media/Dirt texture.4b37dfb25dd3e0c01ea8.jpg",
     "index.html": "/3D-To-do-list/index.html",
     "main.171ee2af.css.map": "/3D-To-do-list/static/css/main.171ee2af.css.map",
-    "main.c81f8b1e.js.map": "/3D-To-do-list/static/js/main.c81f8b1e.js.map",
+    "main.2321ad43.js.map": "/3D-To-do-list/static/js/main.2321ad43.js.map",
     "787.c1ea96ef.chunk.js.map": "/3D-To-do-list/static/js/787.c1ea96ef.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.171ee2af.css",
-    "static/js/main.c81f8b1e.js"
+    "static/js/main.2321ad43.js"
   ]
 }
