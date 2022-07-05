@@ -19,6 +19,9 @@ function ChooseModel(props) {
     let move = props.move
     let setMove = props.setMove
 
+    let clickEffect = props.clickEffect
+    let setClickEffect = props.setClickEffect
+
     const [toDoTruthy, setToDoTruthy] = useState(false)
     const [models, setModels] = useState([])
 
@@ -56,6 +59,7 @@ function ChooseModel(props) {
     function collapseChoosePage() {
         setChooseTruthy(false)
         setMove(true)
+        setClickEffect(false)
       }
 
     return(

@@ -5,6 +5,10 @@ import { PointerLockControls as PointerLockControlsImpl } from "three/examples/j
 extend({PointerLockControlsImpl})
 
 const FPVControls = (props) => {
+
+    let clickEffect = props.clickEffect
+    let setClickEffect = props.setClickEffect
+
     const {camera, gl} = useThree()
     const controls = useRef()
 
@@ -13,6 +17,7 @@ useEffect(() => {
         if(key.keyCode == 17) {
             controls.current.lock()
         }
+        setClickEffect(true)
     }
 
     document.addEventListener("keydown", screenLock, false)

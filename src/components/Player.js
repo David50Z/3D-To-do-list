@@ -10,14 +10,19 @@ const SPEED = 7
 
 
 const Player = (props) => {
+
     let move = props.move
+    let clickEffect = props.clickEffect
+    let setClickEffect = props.setClickEffect
+
     const { camera } = useThree();
     const { moveForward, moveBackward, moveLeft, moveRight, jump } =
       useKeyboardControls();
     const [ref, api] = useSphere(() => ({
       mass: 1,
       type: 'Dynamic',
-      ...props,
+      position: [0, 3, 10],
+      //...props,
     }));
   
     const velocity = useRef([0, 0, 0]);
@@ -63,7 +68,7 @@ const Player = (props) => {
     //console.log(move)
     return (
       <>
-      <FPVcontrols />
+      <FPVcontrols clickEffect={clickEffect} setClickEffect={setClickEffect} />
         <mesh ref={ref} />
       </>
     );

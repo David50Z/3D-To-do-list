@@ -49,6 +49,7 @@ import House from './components/models/House';
 import Desk from './components/models/Desk'
 import Hut from './components/models/Hut'
 import Choose from './components/models/Choose'
+import { click } from '@testing-library/user-event/dist/click';
 
 
 
@@ -56,35 +57,50 @@ import Choose from './components/models/Choose'
 
 function App() {
 
+
+  //Ignore this
   const [cubes, saveWorld] = useStore((state) => [
     state.cubes, 
     state.saveWorld
   ])
 
-
+  //Gets data from the property world, from local storage
   let savedModels =  JSON.parse(window.localStorage.getItem("world")) || [{list: [], index: 0}]
   console.log(window.localStorage.getItem("world"))
 
 
-
+  //if toDoTruthy equals false, users to do list will not be visible
+  //else, it will pop up on users screen
   const [toDoTruthy, setToDoTruthy] = useState(false)
+
+  //Same thing as toDoTruthy, except for the choose model menu
   const [chooseTruthy, setChooseTruthy] = useState(false)
 
+  //if move equals true, user can move. Else, user can't
   const [move, setMove] = useState(true)
+
+  //the list of models with their own to do list
   const [models, setModels] = useState(savedModels)
 
-  console.log(localStorage)
-
+  //Literally just a usestate that I use to rerender App.js
   const [number, setNumber] = useState(0)
 
+  //Ignore this
   const [bool, setBool] = useState(false)
 
-  
+  //if clickEffect is false, user can't click on models. Else
+  //users can
+  const [clickEffect, setClickEffect] = useState(false)
 
+  
+  //The model the user wants to represent their to do list
   const [userChoice, setUserChoice] = useState(0)
+
+  //The current to do list the user has chosen to look and, and update
   const [chosenList, setChosenList] = useState([{list: [], index: 0}])
 
-  const [updatedList, setUpdatedList] = useState('not updated')
+
+  
   //const [toDos, setToDos] = useState(chosenList[0].list)
 
   //console.log(updatedList)
@@ -95,7 +111,7 @@ function App() {
 
     //const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key))
 
-  console.log(models)
+ 
 
     const setLocalStorage = (key, value) =>
     window.localStorage.setItem(key, JSON.stringify(value))
@@ -142,13 +158,20 @@ function App() {
   }
 }
 
+  function showChoosePageFunc() {
+    setChooseTruthy(true)
+    setMove(false)
+  }
 
-
-
+  function showToDoPageFunc() {
+    setToDoTruthy(true)
+    setMove(false)    
+  }
 
   function showtoDoPage() {
-    setToDoTruthy(true)
-    setMove(false)
+    if(clickEffect === true) {
+      showToDoPageFunc()
+    }
   }
 
   function collapsetoDoPage() {
@@ -159,12 +182,13 @@ function App() {
     setModels(changedModel)
     setToDoTruthy(false)
     setMove(true)
-
+    setClickEffect(false)
   }
 
   function showChoosePage() { 
-    setChooseTruthy(true)
-    setMove(false)
+    if(clickEffect === true) {
+      showChoosePageFunc()
+    }
   }
 
   
@@ -205,6 +229,9 @@ function App() {
 
         move={move}
         setMove={setMove}
+
+        clickEffect={clickEffect}
+        setClickEffect={setClickEffect}
          />
       <Canvas className='Canvas1'>
       
@@ -214,8 +241,7 @@ function App() {
       
         <Ground position={[0, 0.5, 0] } models={models} setModels={setModels} userChoice={userChoice} setUserChoice={setUserChoice}
         />
-        <Player position={[0, 3, 10]} move={move} />
-        <House  scale={0.3} position={[10.01,0.5, 0]} onClick={showtoDoPage} />
+        <Player position={[0, 3, 10]} move={move} clickEffect={clickEffect} setClickEffect={setClickEffect}  />
         {/*cubes.map((cube) => (
           <Cube position={cube.pos} key={nanoid()} texture={cube.texture} />
           
@@ -225,8 +251,7 @@ function App() {
           if(item.model === 1) {
             return <House onClick={() => {
 
-              //console.log(item)
-              setUpdatedList('updated')
+      
               showtoDoPage()
               setChosenList([item])
               //setToDos(item)
