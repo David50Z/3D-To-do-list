@@ -16,15 +16,18 @@ function ToDo(props) {
     const [input, setInput] = useState('')
 
 
-
+    //Similar logic to the handleSubmit function
     const handleDelete = () => {
         let list = chosenList
         list[0].list.splice(index, 1)
         setChosenList(list)
+        //rerenders App.js
         setNumber(number + 1)
     }
-
+    //Similar logic to handleSubmit function
     const handleEdit = (key) => {
+        //Ok I literally forgot that this shouldn't be possible while making this.
+        //Still works????
         if(key.keyCode == 13) {
         let list = chosenList
         list[0].list[index] = input
@@ -33,6 +36,7 @@ function ToDo(props) {
         }
     }
 
+    //Stores the edit inputs val
     const handleInput = (event) => {
         setInput(event.target.value)
     }

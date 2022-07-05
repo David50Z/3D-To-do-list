@@ -5,6 +5,9 @@ import axios from 'axios';
 import {useStore} from '../hooks/useStore'
 
 const Cube = ({position, scale, texture, ...props}) => {
+
+    //Legend said this code was being used once... Not anymore
+
     const [hover, setHover] = useState(null)
     const [addCube, addModel, removeCube, activeTexture] = useStore((state) => [
         state.addCube,

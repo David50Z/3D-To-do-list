@@ -22,9 +22,8 @@ function ChooseModel(props) {
     let clickEffect = props.clickEffect
     let setClickEffect = props.setClickEffect
 
-    const [toDoTruthy, setToDoTruthy] = useState(false)
-    const [models, setModels] = useState([])
 
+    //Samething from App.js, except for the choose model page
     let h1Style = {}
     let divStyle = {}
 
@@ -56,6 +55,8 @@ function ChooseModel(props) {
       }
     }
     
+
+    //same thing as collapse to do page, but for the choose model page
     function collapseChoosePage() {
         setChooseTruthy(false)
         setMove(true)
@@ -73,9 +74,9 @@ function ChooseModel(props) {
 
         <h1>Make toDo list</h1>
             
-        <h2 style={h1Style} onClick={() => {setUserChoice(1)}} >Home toDo list</h2>
+        <h2 style={h1Style} onClick={() => { /*Next time the user clicks the ground, a 3D house will appear */ setUserChoice(1)}} >Home toDo list</h2>
 
-        <h2 style={h1Style} onClick={() => {setUserChoice(2)}} >Work to do list</h2>
+        <h2 style={h1Style} onClick={() => { /*Next time the user clicks the ground, a 3D desk will appear */ setUserChoice(2)}} >Work to do list</h2>
             
         </div>
         <h1 style={{position: 'relative', color: 'black'}} onClick={collapseChoosePage}>Back</h1>

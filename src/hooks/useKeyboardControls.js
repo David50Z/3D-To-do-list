@@ -2,6 +2,11 @@ import { useState, useEffect } from 'react';
 import { useStore } from './useStore';
 
 function actionByKey(key) {
+
+  //I wrote this all down copying a guide, and the dumbass that made it explained literally nothing
+  //Normally I piece together, but I can barely theorize what the code is doing. So no sudo code here!
+
+  
   const keys = {
     KeyW: 'moveForward',
     KeyS: 'moveBackward',
@@ -11,6 +16,7 @@ function actionByKey(key) {
   };
   return keys[key];
 }
+
 
 function textureByKey(key) {
   const keys = {
@@ -32,16 +38,20 @@ const useKeyboardControls = (props) => {
   });
   const [setTexture] = useStore((state) => [state.setTexture]);
 
+
+
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Movement key
+      console.log(e.code)
+
       if (actionByKey(e.code)) {
         setMovement((state) => ({
           ...state,
           [actionByKey(e.code)]: true,
         }));
       }
-      // Change texture key
+      console.log(movement)
+
       if (textureByKey(e.code)) {
         setTexture(textureByKey(e.code));
       }

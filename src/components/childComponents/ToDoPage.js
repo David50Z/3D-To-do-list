@@ -5,6 +5,8 @@ import ToDos from "./ToDos";
 
 function ToDoPage(props) {
 
+
+
     let h1Style = props.h1Style
     let divStyle = props.divStyle
     let collapsetoDoPage = props.collapsetoDoPage
@@ -12,6 +14,7 @@ function ToDoPage(props) {
     let number = props.number
     let setNumber = props.setNumber
 
+    //selected model
     let chosenList = props.chosenList
     let setChosenList = props.setChosenList
 
@@ -25,16 +28,22 @@ function ToDoPage(props) {
     let [input, setInput] = useState('')
 
 
+    //Stores the data the user is typing in
     const handleInput = (event) => {
         setInput(event.target.value)
     }
-
+    
+    //If the user pressed enter, inputs value will be pushed to 
+    //the selected to do list arrayy
     const handleSubmit = (e) => {
         //e.preventDefault()
         if(e.keyCode == 13) {
+        //assigns the selected model
         let list = chosenList
+        //edits the models to do list
         list[0].list.push(input)
         console.log(list)
+        //updates model
         setChosenList(list)
         setInput('')
         console.log('hello')
@@ -51,6 +60,7 @@ function ToDoPage(props) {
             <div style={{position: 'absolute', top: '0px',top: '10%',left: '50%', transform: 'translate(-50%, -0%)' }}>
                 {chosenList[0].list.map((item, index) => {
                     return (
+                        /*Makes each array item its own component */
                         <ToDos 
                         item={item} 
                         index={index} 
@@ -83,6 +93,10 @@ function ToDoPage(props) {
 }
 
 export default ToDoPage
+
+
+
+
 
 
 //<button onClick={handleSubmit} style={{marginTop: '20px'}} value={input}>Add to do</button>

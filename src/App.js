@@ -66,7 +66,7 @@ function App() {
 
   //Gets data from the property world, from local storage
   let savedModels =  JSON.parse(window.localStorage.getItem("world")) || [{list: [], index: 0}]
-  console.log(window.localStorage.getItem("world"))
+  //console.log(window.localStorage.getItem("world"))
 
 
   //if toDoTruthy equals false, users to do list will not be visible
@@ -100,23 +100,7 @@ function App() {
   const [chosenList, setChosenList] = useState([{list: [], index: 0}])
 
 
-  
-  //const [toDos, setToDos] = useState(chosenList[0].list)
-
-  //console.log(updatedList)
-  //console.log(chosenList)
-  //console.log(models.length)
-
-
-
-    //const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key))
-
- 
-
-    const setLocalStorage = (key, value) =>
-    window.localStorage.setItem(key, JSON.stringify(value))
-
-
+  //Saves users to do lists and models every 10 seconds
   useInterval(() =>{
     window.localStorage.setItem("world", JSON.stringify(models))
     //saveWorld(models)
@@ -125,15 +109,18 @@ function App() {
 
 
 
-
+  //HTML elements styling (Made like this because I don't know how to use return D:)
   let h1Style = {}
 
   let divStyle = {}
 
+  //Sets the to do lists to not be displayed if toDoTruthy is false
   if(toDoTruthy === false) {
     h1Style = {display: 'none'}
     divStyle = {display: 'none'}
-  } else {
+  }
+  //Styling for to do list if toDoTruthy is true
+  else {
   h1Style = {
     color: 'black',
     zIndex: 90,
@@ -158,22 +145,24 @@ function App() {
   }
 }
 
+  //Helper function that activates the choose model page, while allowing user to move
   function showChoosePageFunc() {
     setChooseTruthy(true)
     setMove(false)
   }
-
+  //Helper function that activates the to do list page, while allowing user to move
   function showToDoPageFunc() {
     setToDoTruthy(true)
     setMove(false)    
   }
 
+  //The checks if clickEffect is true before activating to do list page
   function showtoDoPage() {
     if(clickEffect === true) {
       showToDoPageFunc()
     }
   }
-
+  //Updates the chosen models to do list in the models state array
   function collapsetoDoPage() {
     let changedModel = models
     console.log(chosenList[0])
@@ -185,6 +174,7 @@ function App() {
     setClickEffect(false)
   }
 
+  //The checks if clickEffect is true before activating the choose model page
   function showChoosePage() { 
     if(clickEffect === true) {
       showChoosePageFunc()
@@ -198,17 +188,13 @@ function App() {
 
 
 
-  /*useEffect(() => {
-    const timeout = setTimeout(() => {
-       setToDoTruthy(num + 1);
-     }, 2000);
-   },[]);*/
-  
+
 
 
   return (
     <div className="App">
     <ToDoPage 
+    /*Passes the data to the ToDoPage component*/ 
     h1Style={h1Style} 
     divStyle={divStyle} 
     collapsetoDoPage={collapsetoDoPage} 
@@ -235,29 +221,40 @@ function App() {
          />
       <Canvas className='Canvas1'>
       
-      <ambientLight intensity={0.25} />
-      <pointLight position={[100, 100, 100]} castShadow intensity={0.7} color={'blue'} />
-      <Physics gravity={[0, -30, 0]} >
+      <ambientLight /*Makes all objects in the vertual enviorment light up by the specified amount */ intensity={0.25} />
+      <pointLight /*The Threejs equivelent to a light bulb, and its position */ position={[100, 100, 100]} castShadow intensity={0.7} color={'blue'} />
+      <Physics gravity={[0, -30, 0]} /*Allows objects to fall */ >
       
-        <Ground position={[0, 0.5, 0] } models={models} setModels={setModels} userChoice={userChoice} setUserChoice={setUserChoice}
+        <Ground /*The ground the user is standing on */ position={[0, 0.5, 0] } models={models} setModels={setModels} userChoice={userChoice} setUserChoice={setUserChoice}
         />
-        <Player position={[0, 3, 10]} move={move} clickEffect={clickEffect} setClickEffect={setClickEffect}  />
-        {/*cubes.map((cube) => (
+        <Player /*This component manages the users ability to move, and look around */ position={[0, 3, 10]} move={move} clickEffect={clickEffect} setClickEffect={setClickEffect}  />
+
+        
+        {/**Ignore this */
+
+          /*cubes.map((cube) => (
           <Cube position={cube.pos} key={nanoid()} texture={cube.texture} />
           
         ))*/}
 
-        {models.map((item, index) => {
+        {/*Looping through the models array. Each object in the array will have a property called model.
+        If models property === 1 A house model will appear in the spot the user next clicks, if the value
+        is 2, a desk will appear */ 
+
+        models.map((item, index) => {
           if(item.model === 1) {
             return <House onClick={() => {
 
-      
+              //To do list page will pop up on click
               showtoDoPage()
+
+              //This individual models to do list will be selected 
               setChosenList([item])
-              //setToDos(item)
               
-              }} scale={0.3} position={[item.x, item.y - 0.5, item.z]} />
+              }} scale={0.3} /*Each model will have x,y,z properties to tell
+              Threejs where you want this model to be placed */ position={[item.x, item.y - 0.5, item.z]} />
           } else if(item.model === 2) {
+            /*Same thing as expressed above, except for Desk models */
             return <Desk onClick={() => {
               showtoDoPage()
               setChosenList([item])
@@ -265,12 +262,13 @@ function App() {
           }
         })}
 
-        <Choose  position={[0, 2, 0]} scale={1} onClick={showChoosePage} />
+        <Choose /*The 3D model the user clicks on to choose a new model they want to make*/  
+        position={[0, 2, 0]} scale={1} onClick={showChoosePage} />
 
 
-        <Hut position={[0, 8.5, 0]} scale={0.7} />
+        <Hut /*3D model for the virtual enviorment */ position={[0, 8.5, 0]} scale={0.7} />
 
-        <Stars />
+        <Stars /**Stars! */ />
 
       </Physics>
       </Canvas>

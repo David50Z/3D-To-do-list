@@ -15,9 +15,13 @@ const Player = (props) => {
     let clickEffect = props.clickEffect
     let setClickEffect = props.setClickEffect
 
+    //The camera that will be used to look at our virtual enviorment
     const { camera } = useThree();
+    //Like I explained in the useKeyboardControlls hook, no idea!
     const { moveForward, moveBackward, moveLeft, moveRight, jump } =
       useKeyboardControls();
+
+    //so long story short, this is our character, and what we will use to move around
     const [ref, api] = useSphere(() => ({
       mass: 1,
       type: 'Dynamic',
@@ -25,18 +29,22 @@ const Player = (props) => {
       //...props,
     }));
   
+
+    //characters speed
     const velocity = useRef([0, 0, 0]);
 
+
     useEffect(() => {
+      //Gotta read up on subscribe
       api.velocity.subscribe((v) => (velocity.current = v));
     }, [api.velocity]);
   
     const pos = useRef([0, 0, 0]);
     useEffect(() => api.position.subscribe((v) => (pos.current = v)), [api.position]);
-    //Look up subscribe
 
     useFrame(() => {
       if(move === true) {
+        //basically makes the camera follow the sphere
       camera.position.copy(
         new Vector3(pos.current[0], pos.current[1], pos.current[2])
       );
@@ -78,6 +86,11 @@ const Player = (props) => {
   export default Player
 
 
+
+
+
+
+  
 
   /*const Player = (props) => {
     
