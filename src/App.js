@@ -91,6 +91,7 @@ function App() {
   //if clickEffect is false, user can't click on models. Else
   //users can
   const [clickEffect, setClickEffect] = useState(false)
+  const [shiftBool, setShiftBool] = useState(false)
 
   
   //The model the user wants to represent their to do list
@@ -146,20 +147,22 @@ function App() {
 }
 
   //Helper function that activates the choose model page, while allowing user to move
-  function showChoosePageFunc() {
+  function showChoosePageFunc(item) {
     setChooseTruthy(true)
     setMove(false)
+    
   }
   //Helper function that activates the to do list page, while allowing user to move
-  function showToDoPageFunc() {
+  function showToDoPageFunc(item) {
     setToDoTruthy(true)
     setMove(false)    
+    setChosenList([item])
   }
 
   //The checks if clickEffect is true before activating to do list page
-  function showtoDoPage() {
+  function showtoDoPage(item) {
     if(clickEffect === true) {
-      showToDoPageFunc()
+      showToDoPageFunc(item)
     }
   }
   //Updates the chosen models to do list in the models state array
@@ -181,8 +184,12 @@ function App() {
     }
   }
 
-  
+  const rotateItem = (item) => {
+    item.rotation[1] = item.rotation[1] - 0.3
+    setNumber(number + 1)
+  }
 
+  
 
   
 
@@ -227,7 +234,13 @@ function App() {
       
         <Ground /*The ground the user is standing on */ position={[0, 0.5, 0] } models={models} setModels={setModels} userChoice={userChoice} setUserChoice={setUserChoice}
         />
-        <Player /*This component manages the users ability to move, and look around */ position={[0, 3, 10]} move={move} clickEffect={clickEffect} setClickEffect={setClickEffect}  />
+        <Player /*This component manages the users ability to move, and look around */ 
+        position={[0, 3, 10]} move={move} 
+        clickEffect={clickEffect} 
+        setClickEffect={setClickEffect}
+        shiftBool={shiftBool}
+        setShiftBool={setShiftBool}
+        />
 
         
         {/**Ignore this */
@@ -245,20 +258,37 @@ function App() {
           if(item.model === 1) {
             return <House onClick={() => {
 
-              //To do list page will pop up on click
-              showtoDoPage()
 
+              console.log(item.rotation[1])
+              //To do list page will pop up on click
+              if(shiftBool === false) {
+              showtoDoPage(item)
+              } else {
+                //item.rotation[1] = item.rotation[1] - 0.3
+                rotateItem(item)
+              }
+
+              
               //This individual models to do list will be selected 
-              setChosenList([item])
+              
               
               }} scale={0.3} /*Each model will have x,y,z properties to tell
-              Threejs where you want this model to be placed */ position={[item.x, item.y - 0.5, item.z]} />
+              Threejs where you want this model to be placed */ 
+              position={[item.x, item.y - 0.5, item.z]}  rotation={[0, item.rotation[1], 0]} />
           } else if(item.model === 2) {
             /*Same thing as expressed above, except for Desk models */
             return <Desk onClick={() => {
-              showtoDoPage()
-              setChosenList([item])
-            }} scale={0.025} position={[item.x, item.y - 0.5, item.z]} />
+              /*showtoDoPage()
+              setChosenList([item])*/
+              console.log(item.rotation[1])
+              //To do list page will pop up on click
+              if(shiftBool === false) {
+              showtoDoPage(item)
+              } else {
+                //item.rotation[1] = item.rotation[1] - 0.3
+                rotateItem(item)
+              }
+            }} scale={0.025} position={[item.x, item.y - 0.5, item.z]} rotation={[0, item.rotation[1], 0]} />
           }
         })}
 

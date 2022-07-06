@@ -15,6 +15,9 @@ const Player = (props) => {
     let clickEffect = props.clickEffect
     let setClickEffect = props.setClickEffect
 
+    let shiftBool = props.shiftBool
+    let setShiftBool = props.setShiftBool
+
     //The camera that will be used to look at our virtual enviorment
     const { camera } = useThree();
     //Like I explained in the useKeyboardControlls hook, no idea!
@@ -76,7 +79,7 @@ const Player = (props) => {
     //console.log(move)
     return (
       <>
-      <FPVcontrols clickEffect={clickEffect} setClickEffect={setClickEffect} />
+      <FPVcontrols clickEffect={clickEffect} setClickEffect={setClickEffect} shiftBool={shiftBool} setShiftBool={setShiftBool} />
         <mesh ref={ref} />
       </>
     );

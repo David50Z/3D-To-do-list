@@ -11,6 +11,10 @@ const FPVControls = (props) => {
     let clickEffect = props.clickEffect
     let setClickEffect = props.setClickEffect
 
+    let shiftBool = props.shiftBool
+    let setShiftBool = props.setShiftBool
+
+
     //react-three stuff
     const {camera, gl} = useThree()
 
@@ -18,13 +22,45 @@ const FPVControls = (props) => {
     //How? I don't know, still need to study useRef
     const controls = useRef()
 
+    const lockScreen = () => {
+        controls.current.lock()
+        setClickEffect(true)
+    }
+
+
+    const setShiftTrue = () => {
+        setShiftBool(true)
+    }
+    const setShiftFalse = () => {
+        setShiftBool(true)
+    } 
+
+    const shiftHelp = () => {
+        if(shiftBool === true) {
+
+            setShiftTrue()
+        } else {
+
+            setShiftFalse()
+        }
+    }
+
 useEffect(() => {
     function screenLock(key) {
         //When user hits ctrl, the user can turn the virtual camera
         if(key.keyCode == 17) {
-            controls.current.lock()
-            setClickEffect(true)
+            /*controls.current.lock()
+            setClickEffect(true)*/
+            lockScreen()       
+            
+        } else if(key.keyCode == 16) {
+  
+            
+            setShiftTrue()
+        } else if(key.keyCode === 192) {
+            setShiftBool(false)
         }
+        
         
     }
 

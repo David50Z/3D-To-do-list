@@ -42,7 +42,7 @@ const useKeyboardControls = (props) => {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      console.log(e.code)
+      //console.log(e.code)
 
       if (actionByKey(e.code)) {
         setMovement((state) => ({
@@ -50,7 +50,6 @@ const useKeyboardControls = (props) => {
           [actionByKey(e.code)]: true,
         }));
       }
-      console.log(movement)
 
       if (textureByKey(e.code)) {
         setTexture(textureByKey(e.code));

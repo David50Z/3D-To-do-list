@@ -35,7 +35,7 @@ export const Ground = (props) => {
 
     //Adds a new model to the list of models
     const addList = (x, y, z, val) => {
-        setModels([...models, {model: val, x: x, y: y, z: z, list: [], index: models.length}])
+        setModels([...models, {model: val, x: x, y: y, z: z, rotation: [0, 0, 0,], list: [], index: models.length}])
         console.log(models[models.length - 1])
         setUserChoice(0) //Sets user choice to 0 so the user doesn't keep placing new 3D models
     }
