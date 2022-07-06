@@ -23,8 +23,9 @@ useEffect(() => {
         //When user hits ctrl, the user can turn the virtual camera
         if(key.keyCode == 17) {
             controls.current.lock()
+            setClickEffect(true)
         }
-        setClickEffect(true)
+        
     }
 
     //Makes the event listener for any keys being pressed

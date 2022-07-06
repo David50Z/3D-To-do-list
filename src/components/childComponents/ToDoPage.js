@@ -82,7 +82,7 @@ function ToDoPage(props) {
             </div>
             <h1 style={{position: 'relative', color: 'black'}} onClick={collapsetoDoPage}>Back</h1>
 
-            <h1 style={{position: 'relative', color: 'red', right: '0px'}} onClick={() => {
+            <h1 style={{position: 'absolute', color: 'red', left: '3%', top: '90%'}} onClick={() => {
                 let newModels = models
                 newModels[chosenList[0].index].model = 0
                 collapsetoDoPage()
