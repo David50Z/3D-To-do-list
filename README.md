@@ -7,6 +7,8 @@
 
 To activate camera controls, click and the screen and press control. Remember to place your cursor at the center of the screen, or else it becomes difficult to click models accurately.
 
+Click on the orb, and click on one of the to do list types. Then, click anywhere on the ground to make a model that represents that type of to do list appear.
+
 To rotate models, press shift. If you want to look at your to do lists again, press the back tick button or ~ button
 
 ![Screenshot (216)](https://user-images.githubusercontent.com/90537209/177427131-023c7cfb-d919-49c3-8fe9-4e94a7271f9f.png)
