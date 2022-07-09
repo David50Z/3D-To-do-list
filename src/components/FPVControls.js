@@ -14,6 +14,12 @@ const FPVControls = (props) => {
     let shiftBool = props.shiftBool
     let setShiftBool = props.setShiftBool
 
+    let toDoTruthy = props.toDoTruthy
+    let chooseTruthy = props.chooseTruthy
+
+    let helpTruthy = props.helpTruthy
+    let setHelpTruthy = props.setHelpTruthy
+
 
     //react-three stuff
     const {camera, gl} = useThree()
@@ -45,6 +51,18 @@ const FPVControls = (props) => {
         }
     }
 
+    if(toDoTruthy === true) {
+        controls.current.unlock()
+    }
+
+    if(chooseTruthy === true) {
+        controls.current.unlock()
+    }
+
+    if(helpTruthy === true) {
+        controls.current.unlock()
+    }
+
 useEffect(() => {
     function screenLock(key) {
         //When user hits ctrl, the user can turn the virtual camera
@@ -54,17 +72,20 @@ useEffect(() => {
             lockScreen()       
             
         } else if(key.keyCode == 16) {
-  
-            
             setShiftTrue()
+
         } else if(key.keyCode === 192) {
             setShiftBool(false)
+
+        } else if(key.keyCode === 72) {
+            setHelpTruthy(true)
         }
         
         
     }
 
     //Makes the event listener for any keys being pressed
+    //canvas.addEventListener('click', screenLock, false);
     document.addEventListener("keydown", screenLock, false)
 
 }, [])

@@ -44,6 +44,7 @@ import axios from 'axios';
 
 import ChooseModel from './components/ChooseModel';
 import ToDoPage from './components/childComponents/ToDoPage';
+import HelpPage from './components/HelpPage'
 
 import House from './components/models/House'; 
 import Desk from './components/models/Desk'
@@ -76,6 +77,7 @@ function App() {
   //Same thing as toDoTruthy, except for the choose model menu
   const [chooseTruthy, setChooseTruthy] = useState(false)
 
+  const [helpTruthy, setHelpTruthy] = useState(false)
   //if move equals true, user can move. Else, user can't
   const [move, setMove] = useState(true)
 
@@ -200,6 +202,12 @@ function App() {
 
   return (
     <div className="App">
+    <h1 style={{
+          zIndex: 90,
+          position: 'absolute',
+          color: 'white',
+          marginLeft: '20px'
+    }} >Press H for help</h1>
     <ToDoPage 
     /*Passes the data to the ToDoPage component*/ 
     h1Style={h1Style} 
@@ -226,6 +234,16 @@ function App() {
         clickEffect={clickEffect}
         setClickEffect={setClickEffect}
          />
+
+    <HelpPage 
+      helpTruthy={helpTruthy}
+      setHelpTruthy={setHelpTruthy}
+      move={move}
+      setMove={setMove}
+      clickEffect={clickEffect}
+      setClickEffect={setClickEffect}
+    />
+
       <Canvas className='Canvas1'>
       
       <ambientLight /*Makes all objects in the vertual enviorment light up by the specified amount */ intensity={0.25} />
@@ -240,6 +258,10 @@ function App() {
         setClickEffect={setClickEffect}
         shiftBool={shiftBool}
         setShiftBool={setShiftBool}
+        toDoTruthy={toDoTruthy}
+        chooseTruthy={chooseTruthy}
+        helpTruthy={helpTruthy}
+        setHelpTruthy={setHelpTruthy}
         />
 
         

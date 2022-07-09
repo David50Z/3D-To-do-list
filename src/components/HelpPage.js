@@ -10,11 +10,8 @@ import Desk from './models/Desk'
 
 function ChooseModel(props) {
 
-    let chooseTruthy = props.chooseTruthy
-    let setChooseTruthy = props.setChooseTruthy
-
-    let userChoice = props.userChoice
-    let setUserChoice = props.setUserChoice
+    let helpTruthy = props.helpTruthy
+    let setHelpTruthy = props.setHelpTruthy
 
     let move = props.move
     let setMove = props.setMove
@@ -27,7 +24,7 @@ function ChooseModel(props) {
     let h1Style = {}
     let divStyle = {}
 
-    if(chooseTruthy === false) {
+    if(helpTruthy === false) {
         h1Style = {display: 'none'}
         divStyle = {display: 'none'}
       } else {
@@ -40,9 +37,9 @@ function ChooseModel(props) {
         left: '50%',
         transform: 'translate(-50%, -50%)', 
         opacity: 1,
-        //fontSize: '30px',
-        //display: 'block',
-        //marginTop: '40px'
+        fontSize: '30px',
+        display: 'block',
+        marginTop: '40px'
       }
     
       divStyle = {
@@ -63,8 +60,8 @@ function ChooseModel(props) {
     
 
     //same thing as collapse to do page, but for the choose model page
-    function collapseChoosePage() {
-        setChooseTruthy(false)
+    function collapseHelpPage() {
+        setHelpTruthy(false)
         setMove(true)
         setClickEffect(false)
       }
@@ -78,16 +75,14 @@ function ChooseModel(props) {
         transform: 'translate(-50%, -0%)', 
         }}>
 
-        <h1 >Make toDo list</h1>
-        <h2 style={{marginTop: '50px'}}>INSTRUCTIONS:</h2>
-        <h3 style={{maginTop: '50px'}}>First, click on the button with the type of to do list you want to make, click back, click the center of the screen and press the control button again, then click anywhere on the ground to make a 3D representation of the type of to do list, then, click on it!</h3>
-            
-        <button style={{...h1Style, fontSize: '30px', display: 'block', marginTop: '60px'}} onClick={() => { /*Next time the user clicks the ground, a 3D house will appear */ setUserChoice(1)}} >Home toDo list</button>
+        <h1>INSTRUCTIONS:</h1>
+        <h3 >Click on the center of the screen, and press control to activate camera controls. Anytime you want to activate the camera controls again, you will need to do these steps again.</h3>
+        <h3>Click on the black orb in order to make your to do list.</h3>
+        <h3>Press shift, then click on a model to rotate the model instead of activating the to do page. Press the back tick button or the ~ button in order to turn this feature off.</h3>
+        <h3>Back button always removes pages that have popped up, like this one.</h3>
 
-        <button style={{...h1Style, fontSize: '30px', display: 'block', marginTop: '50px'}} onClick={() => { /*Next time the user clicks the ground, a 3D desk will appear */ setUserChoice(2)}} >Work to do list</button>
-            
         </div>
-        <button style={{position: 'relative', color: 'black', fontSize: '30px', marginBottom: '30px'}} onClick={collapseChoosePage}>Back</button>
+        <button style={{position: 'relative', color: 'black', fontSize: '30px', marginBottom: '30px'}} onClick={collapseHelpPage}>Back</button>
     </div>
 
     )

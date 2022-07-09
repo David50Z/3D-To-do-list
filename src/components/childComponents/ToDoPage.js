@@ -80,7 +80,7 @@ function ToDoPage(props) {
 
                 
             </div>
-            <h1 style={{position: 'relative', color: 'black'}} onClick={collapsetoDoPage}>Back</h1>
+            <button style={{position: 'relative', color: 'black', fontSize: '30px', marginBottom: '30px'}} onClick={collapsetoDoPage}>Back</button>
 
             <h1 style={{position: 'absolute', color: 'red', left: '3%', top: '90%'}} onClick={() => {
                 let newModels = models
