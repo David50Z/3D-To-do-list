@@ -80,6 +80,7 @@ function ChooseModel(props) {
         <h3>Click on the black orb in order to make your to do list.</h3>
         <h3>Press shift, then click on a model to rotate the model instead of activating the to do page. Press the back tick button or the ~ button in order to turn this feature off.</h3>
         <h3>Back button always removes pages that have popped up, like this one.</h3>
+        <h3>Models and lists get saved every 5 seconds</h3>
 
         </div>
         <button style={{position: 'relative', color: 'black', fontSize: '30px', marginBottom: '30px'}} onClick={collapseHelpPage}>Back</button>

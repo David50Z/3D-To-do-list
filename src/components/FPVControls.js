@@ -77,7 +77,7 @@ useEffect(() => {
         } else if(key.keyCode === 192) {
             setShiftBool(false)
 
-        } else if(key.keyCode === 72) {
+        } else if(key.keyCode === 18) {
             setHelpTruthy(true)
         }
         

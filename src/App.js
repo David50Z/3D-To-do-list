@@ -108,7 +108,7 @@ function App() {
     window.localStorage.setItem("world", JSON.stringify(models))
     //saveWorld(models)
     console.log('saved')
-  }, 10000)
+  }, 5000)
 
 
 
@@ -207,7 +207,7 @@ function App() {
           position: 'absolute',
           color: 'white',
           marginLeft: '20px'
-    }} >Press H for help</h1>
+    }} >Press the ALT button for help</h1>
     <ToDoPage 
     /*Passes the data to the ToDoPage component*/ 
     h1Style={h1Style} 
