@@ -43,7 +43,7 @@ export const Ground = (props) => {
     return (
         <mesh ref={ref} receiveShadow
         onClick={(e) => {
-            
+            //console.log(e)
             //gets the position of where the user clicked on the ground, and loops
             //through the array that contains those values, assigning them to the
             //x,y,z variables.

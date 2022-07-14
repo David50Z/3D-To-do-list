@@ -70,7 +70,7 @@ function ChooseModel(props) {
       }
 
     return(
-        <div className="Choose model" style={divStyle}>
+        <div onClick={(e) => console.log(e)} className="Choose model" style={divStyle}>
 
         <div style={{position: 'absolute', top: '0px',
         top: '1%',
@@ -82,7 +82,11 @@ function ChooseModel(props) {
         <h2 style={{marginTop: '50px'}}>INSTRUCTIONS:</h2>
         <h3 style={{maginTop: '50px'}}>First, click on the button with the type of to do list you want to make, click back, click the center of the screen and press the control button again, then click anywhere on the ground to make a 3D representation of the type of to do list, then, click on it!</h3>
             
-        <button style={{...h1Style, fontSize: '30px', display: 'block', marginTop: '60px'}} onClick={() => { /*Next time the user clicks the ground, a 3D house will appear */ setUserChoice(1)}} >Home toDo list</button>
+        <button style={{...h1Style, fontSize: '30px', display: 'block', marginTop: '60px'}} onClick={(e) => { 
+          /*Next time the user clicks the ground, a 3D house will appear */
+           setUserChoice(1)
+           console.log(e)
+           }} >Home toDo list</button>
 
         <button style={{...h1Style, fontSize: '30px', display: 'block', marginTop: '50px'}} onClick={() => { /*Next time the user clicks the ground, a 3D desk will appear */ setUserChoice(2)}} >Work to do list</button>
             

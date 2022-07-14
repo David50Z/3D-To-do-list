@@ -65,19 +65,22 @@ const FPVControls = (props) => {
 
 useEffect(() => {
     function screenLock(key) {
+
         //When user hits ctrl, the user can turn the virtual camera
-        if(key.keyCode == 17) {
+        if(key.keyCode === 17) {
+            
             /*controls.current.lock()
             setClickEffect(true)*/
             lockScreen()       
+        }
             
-        } else if(key.keyCode == 16) {
+        if(key.keyCode == 16) {
             setShiftTrue()
 
         } else if(key.keyCode === 192) {
             setShiftBool(false)
 
-        } else if(key.keyCode === 18) {
+        } else if(key.keyCode === 187) {
             setHelpTruthy(true)
         }
         

@@ -207,7 +207,7 @@ function App() {
           position: 'absolute',
           color: 'white',
           marginLeft: '20px'
-    }} >Press the ALT button for help</h1>
+    }} >Press the + button for help</h1>
     <ToDoPage 
     /*Passes the data to the ToDoPage component*/ 
     h1Style={h1Style} 
