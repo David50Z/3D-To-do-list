@@ -1,5 +1,7 @@
-#Site link
-[https://deft-moonbeam-e0bc2c.netlify.app/]
+#Site link <br />
+<br />
+[https://deft-moonbeam-e0bc2c.netlify.app/]<br />
+#WARNING!!! This program currently only works as intended on chrome.
 
 #3D to do list
 
