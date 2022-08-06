@@ -75,6 +75,13 @@ function ChooseModel(props) {
         transform: 'translate(-50%, -0%)', 
         }}>
 
+        
+
+        <h1>WARNING!!!</h1>
+        <h3>This site has only been tested on Chrome, and doesn't work properly on most other browsers.</h3>
+        <br></br>
+
+
         <h1>INSTRUCTIONS:</h1>
         <h3 >Click on the center of the screen, and press control to activate camera controls. Anytime you want to activate the camera controls again, you will need to do these steps again.</h3>
         <h3>Click on the black orb in order to make your to do list.</h3>

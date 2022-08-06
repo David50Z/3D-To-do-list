@@ -1,29 +1,3 @@
-/*import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
-*/
 
 import React, {Suspense, useRef, useState, useEffect} from 'react';
 import './App.css';
@@ -101,6 +75,8 @@ function App() {
 
   //The current to do list the user has chosen to look and, and update
   const [chosenList, setChosenList] = useState([{list: [], index: 0}])
+
+  const [loading, setLoading] = useState(true)
 
 
   //Saves users to do lists and models every 10 seconds
@@ -191,11 +167,15 @@ function App() {
     setNumber(number + 1)
   }
 
-  
-
-  
+  console.log(loading)
 
 
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+       setLoading(false);
+     }, 2000);
+   },[]);
 
 
 
@@ -208,6 +188,17 @@ function App() {
           color: 'white',
           marginLeft: '20px'
     }} >Press the + button for help</h1>
+
+    {loading &&
+      <h1 style={{
+            zIndex: 90,
+            position: 'absolute',
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
+            color: 'white',
+      }}>Loading...</h1>
+    }
     <ToDoPage 
     /*Passes the data to the ToDoPage component*/ 
     h1Style={h1Style} 

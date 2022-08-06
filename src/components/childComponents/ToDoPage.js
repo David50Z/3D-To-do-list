@@ -51,7 +51,7 @@ function ToDoPage(props) {
         
     }
 
-    console.log(chosenList)
+    console.log("hello!")
 
     
 
