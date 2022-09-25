@@ -259,7 +259,7 @@ function App() {
         width: '400px'
         }}
     >
-      <h1 style={{textAlign: 'center'}}>Click the red circle!</h1>
+      <h1 style={{textAlign: 'center'}}>Click the green circle!</h1>
     </div>
     }
 
