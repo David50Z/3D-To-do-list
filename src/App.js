@@ -177,6 +177,7 @@ function App() {
     setToDoTruthy(false)
     setMove(true)
     setClickEffect(false)
+    setClickMe(true)
   }
 
   //The checks if clickEffect is true before activating the choose model page
@@ -316,6 +317,8 @@ function App() {
 
         clickEffect={clickEffect}
         setClickEffect={setClickEffect}
+
+        setClickMe={setClickMe}
          />
 
     <HelpPage 
@@ -325,6 +328,7 @@ function App() {
       setMove={setMove}
       clickEffect={clickEffect}
       setClickEffect={setClickEffect}
+      setClickMe={setClickMe}
     />
 
       <Canvas className='Canvas1'>

@@ -22,6 +22,8 @@ function ChooseModel(props) {
     let clickEffect = props.clickEffect
     let setClickEffect = props.setClickEffect
 
+    let setClickMe = props.setClickMe
+
 
     //Samething from App.js, except for the choose model page
     let h1Style = {}
@@ -67,6 +69,7 @@ function ChooseModel(props) {
         setChooseTruthy(false)
         setMove(true)
         setClickEffect(false)
+        setClickMe(true)
       }
 
     return(
