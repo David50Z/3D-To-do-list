@@ -57,7 +57,7 @@ function ToDoPage(props) {
 
     return(
         <div className="ToDoPage" style={divStyle}>
-            <div style={{position: 'absolute', top: '0px',top: '10%',left: '50%', transform: 'translate(-50%, -0%)' }}>
+            <div style={{position: 'absolute', width: '100%', top: '0px',top: '10%',left: '50%', transform: 'translate(-50%, -0%)' }}>
                 {chosenList[0].list.map((item, index) => {
                     return (
                         /*Makes each array item its own component */
@@ -77,21 +77,12 @@ function ToDoPage(props) {
                     )
                 })}
 
-                <input type='text' placeholder='Make to do' onChange={handleInput} onKeyDown={(e) => handleSubmit(e)} style={{marginTop: '30px'}} ></input>
+                <input type='text' placeholder='Make to do' onChange={handleInput} onKeyDown={(e) => handleSubmit(e)} style={{marginTop: '50px', position: 'relative', left: '50%', transform: 'translateX(-50%)'}} ></input>
                 
 
                 
             </div>
-            <button style={{
-                position: 'relative',
-                 color: 'black',
-                 fontSize: '30px',
-                 marginBottom: '0px',
-                 top: '90%',
-                 left: '50%',
-                 transform: 'translateX(-50%)',
-                     
-                     }} onClick={collapsetoDoPage}>Back</button>
+            <button style={{position: 'relative', color: 'black', fontSize: '30px', marginBottom: '30px'}} onClick={collapsetoDoPage}>Back</button>
 
             <h1 style={{position: 'absolute', color: 'red', left: '3%', top: '90%'}} onClick={() => {
                 let newModels = models

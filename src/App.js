@@ -137,9 +137,10 @@ function App() {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)', 
-    height: '90%',
-    width: '70%',
-    background: 'white',
+    paddingLeft: '25%',
+    paddingRight: '25%',
+    paddingTop: '87vh',
+    backgroundColor: 'white',
     opacity: 1
     
   }
@@ -204,7 +205,7 @@ function App() {
 
 
       
-    if(key.keyCode === 16 && toDoTruthy === false) {
+    if(key.keyCode === 16 && toDoTruthy === false ) {
         setShiftBool(!shiftBool)
 
     } else if(key.keyCode === 192) {

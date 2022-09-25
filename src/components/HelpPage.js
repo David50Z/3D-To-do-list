@@ -77,17 +77,20 @@ function ChooseModel(props) {
 
         
 
-        <h1>WARNING!!!</h1>
-        <h3>This site has only been tested on Chrome, and doesn't work properly on most other browsers.</h3>
-        <br></br>
+        <h3 className="instructions-title">WARNING!!!</h3>
+        <h4 className="instructions">This site has only been tested on Chrome, and might be buggy on other browsers</h4>
+        <h4 className="instructions" style={{marginBottom: '30px'}}>Also this application does not work completely as intended on mobile</h4>
+        
 
+        <h3 className="instructions" style={{marginBottom: '30px'}}>Hello user! This is a 3D to do list. You can create 3D models, and each model will contain a todo list. Have fun!</h3>
+        
 
-        <h1>INSTRUCTIONS:</h1>
-        <h3 >Click on the center of the screen, and press control to activate camera controls. Anytime you want to activate the camera controls again, you will need to do these steps again.</h3>
-        <h3>Click on the black orb in order to make your to do list.</h3>
-        <h3>Press shift, then click on a model to rotate the model instead of activating the to do page. Press the back tick button or the ~ button in order to turn this feature off.</h3>
-        <h3>Back button always removes pages that have popped up, like this one.</h3>
-        <h3>Models and lists get saved every 5 seconds</h3>
+        <h3 className="instructions-title" style={{marginBottom: '30px'}}>INSTRUCTIONS:</h3>
+        <h4 className="instructions">Click on the red circle at the center of your screen. This will give you camera controls, and allow you to look around your 3D enviorment.</h4>
+        <h4 className="instructions">Click on the black orb and choose a 3D model that will contain your 3D to do list. Click on the ground to place the 3D model, and click on it to access your to do list.</h4>
+        <h4 className="instructions">Press shift and click on a model to rotate it. Press shift again to turn this ability off.</h4>
+        <h4 className="instructions">Back button always removes pages that have popped up, like this one.</h4>
+        <h4 className="instructions">Models and lists get saved every 5 seconds</h4>
 
         </div>
         <button style={{position: 'relative', color: 'black', fontSize: '30px', marginBottom: '30px'}} onClick={collapseHelpPage}>Back</button>

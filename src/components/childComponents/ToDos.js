@@ -51,13 +51,10 @@ function ToDo(props) {
     //const 
 
     return (
-        <div className="todos-container">
-        
+        <div style={{marginTop: '50px', postion: 'relative', textAlign: 'center'}}>
             <h2 style={{...h1Style, display: 'inLine'}}>{item}</h2>
-                <div>
-                    <input type='text' placeholder="Edit to do"  style={{...h1Style, marginLeft: '20px'}} onChange={handleInput} onKeyDown={(key) => handleEdit(key)} ></input>
-                    <button style={{...h1Style, display: 'inline', marginLeft: '20px', fontSize: '20px'}} onClick={handleDelete}>Delete</button>
-                </div>
+            <input type='text' placeholder="Edit to do"  style={{...h1Style, marginLeft: '20px'}} onChange={handleInput} onKeyDown={(key) => handleEdit(key)} ></input>
+            <button style={{...h1Style, display: 'inline', marginLeft: '20px', fontSize: '20px'}} onClick={handleDelete}>Delete</button>
         </div>
     )
 

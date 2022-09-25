@@ -13,20 +13,29 @@ canvas {
   z-index: -100;
 }
 
-
-
 ToDoPage {
-  position: absolute;
-  width: 70%;
-  height: 90%;
-  background: white;
+  position: relative;
   z-index: 50;
   font-size: 20;
   color: red;
 }
 
-.todos-container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 100%
+@media only screen and (max-height: 750px) {
+  .instructions {
+    font-size: 10px;
+  }
+
+  .instructions-title {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 1100px) and (min-height: 751px) {
+  .instructions {
+    font-size: 13px;
+  }
+
+  .instructions-title {
+    font-size: 23px;
+  }
 }
