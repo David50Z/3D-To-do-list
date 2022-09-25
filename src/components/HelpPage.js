@@ -86,7 +86,7 @@ function ChooseModel(props) {
         
 
         <h3 className="instructions-title" style={{marginBottom: '30px'}}>INSTRUCTIONS:</h3>
-        <h4 className="instructions">Click on the red circle at the center of your screen. This will give you camera controls, and allow you to look around your 3D enviorment. Press ESC to undo this. (note: you may have to click on the red circle multiple times)</h4>
+        <h4 className="instructions">Click on the green circle at the center of your screen. This will give you camera controls, and allow you to look around your 3D enviorment. Press ESC to undo this. (note: you may have to click on the green circle multiple times)</h4>
         <h4 className="instructions">Click on the black orb and choose a 3D model that will contain your 3D to do list. Click on the ground to place the 3D model, and click on it to access your to do list.</h4>
         <h4 className="instructions">Press shift and click on a model to rotate it. Press shift again to turn this ability off.</h4>
         <h4 className="instructions">Back button always removes pages that have popped up, like this one.</h4>
