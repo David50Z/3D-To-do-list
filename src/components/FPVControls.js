@@ -20,6 +20,9 @@ const FPVControls = (props) => {
     let helpTruthy = props.helpTruthy
     let setHelpTruthy = props.setHelpTruthy
 
+    let screenLockCondition = props.screenLock
+    let setScreenLockCondition = props.setScreenLock
+
 
     //react-three stuff
     const {camera, gl} = useThree()
@@ -28,70 +31,72 @@ const FPVControls = (props) => {
     //How? I don't know, still need to study useRef
     const controls = useRef()
 
-    const lockScreen = () => {
-        controls.current.lock()
-        setClickEffect(true)
-    }
-
-
-    const setShiftTrue = () => {
-        setShiftBool(true)
-    }
-    const setShiftFalse = () => {
-        setShiftBool(true)
-    } 
-
-    const shiftHelp = () => {
-        if(shiftBool === true) {
-
-            setShiftTrue()
-        } else {
-
-            setShiftFalse()
-        }
-    }
 
     if(toDoTruthy === true) {
         controls.current.unlock()
+        
+
     }
 
     if(chooseTruthy === true) {
         controls.current.unlock()
+        
+
     }
 
     if(helpTruthy === true) {
         controls.current.unlock()
     }
 
-useEffect(() => {
+
+
+
+    //console.log(toDoTruthy)
+    useEffect(() => {
+
+    const lockScreen = (event) => {
+        if(String(event.target.className) === 'target') {
+            controls.current.lock()  
+            setClickEffect(true)      
+        }
+    }
+
+    
     function screenLock(key) {
+
+
+
+        document.removeEventListener("keydown", screenLock, false)
+        document.removeEventListener("keydown", screenLock, true)
 
         //When user hits ctrl, the user can turn the virtual camera
         if(key.keyCode === 17) {
             
-            /*controls.current.lock()
-            setClickEffect(true)*/
-            lockScreen()       
+            controls.current.lock()
+            setClickEffect(true)
+                 
         }
             
-        if(key.keyCode == 16) {
+        /*if(key.keyCode === 16) {
             setShiftTrue()
 
         } else if(key.keyCode === 192) {
-            setShiftBool(false)
+            setShiftBool(!shiftBool)
 
-        } else if(key.keyCode === 187) {
+        } else if(key.keyCode === 72 && chooseTruthy === false && toDoTruthy === false) {
+            console.log(chooseTruthy, toDoTruthy)
             setHelpTruthy(true)
-        }
+        }*/
         
         
     }
 
     //Makes the event listener for any keys being pressed
     //canvas.addEventListener('click', screenLock, false);
-    document.addEventListener("keydown", screenLock, false)
+    document.addEventListener("click", lockScreen, false)
+    })
 
-}, [])
+
 
     return (
         <pointerLockControlsImpl 

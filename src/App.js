@@ -59,7 +59,7 @@ function App() {
   const [models, setModels] = useState(savedModels)
 
   //Literally just a usestate that I use to rerender App.js
-  const [number, setNumber] = useState(0)
+  const [number, setNumber] = useState(false)
 
   //Ignore this
   const [bool, setBool] = useState(false)
@@ -78,15 +78,37 @@ function App() {
 
   const [loading, setLoading] = useState(true)
 
+  const [mousePosition, setMousePosition] = useState({X: 0, Y: 0})
+
+  const [screenLock, setScreenLock] = useState({lock: false, UAWA: false})
+
+  const [target, setTarget] = useState(false)
+
+  const [clickMe, setClickMe] = useState(true)
+
 
   //Saves users to do lists and models every 10 seconds
   useInterval(() =>{
     window.localStorage.setItem("world", JSON.stringify(models))
     //saveWorld(models)
-    console.log('saved')
+    //console.log('saved')
   }, 5000)
 
-
+  async function getCity(country) {
+  
+    //let city
+    
+    const response = await fetch('https://jsonmock.hackerrank.com/api/countries?name=' + country)
+    const city = await response.json()
+    
+    if(city.data.length === 0) {
+      return - 1
+    } else {
+      return city
+    }
+  }
+  
+  //console.log(getCity("afghaniStan"))
 
   //HTML elements styling (Made like this because I don't know how to use return D:)
   let h1Style = {}
@@ -114,15 +136,16 @@ function App() {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%', 
-    paddingLeft: '25%',
-    paddingRight: '25%',
-    paddingTop: '87vh',
-    backgroundColor: 'white',
+    transform: 'translate(-50%, -50%)', 
+    height: '90%',
+    width: '70%',
+    background: 'white',
     opacity: 1
     
   }
 }
+
+
 
   //Helper function that activates the choose model page, while allowing user to move
   function showChoosePageFunc(item) {
@@ -167,27 +190,95 @@ function App() {
     setNumber(number + 1)
   }
 
-  console.log(loading)
+  //console.log(loading)
 
+  /*const setShifty = event => {
+    if(event.keyCode === 16) {
+      setShiftBool(!shiftBool)
+      
+    }
+    console.log(shiftBool)
+  }*/
+
+  const controls = (key) => {
+
+
+      
+    if(key.keyCode === 16 && toDoTruthy === false) {
+        setShiftBool(!shiftBool)
+
+    } else if(key.keyCode === 192) {
+        setShiftBool(!shiftBool)
+
+    } else if(key.keyCode === 72 && chooseTruthy === false && toDoTruthy === false) {
+        console.log(chooseTruthy, toDoTruthy)
+        setHelpTruthy(!helpTruthy)
+    }
+  }
 
 
   useEffect(() => {
     const timeout = setTimeout(() => {
        setLoading(false);
+       setTarget(true)
      }, 2000);
-   },[]);
+
+     /*function setShifty(event) {
+      if(event.keyCode === 16) {
+        setShiftBool(!shiftBool)
+        console.log(shiftBool)
+      }
+     }
+
+     document.addEventListener("keydown", setShifty)*/
+     
+   }, []);
 
 
 
 
   return (
-    <div className="App">
+    <div className="App" tabIndex="0" onClick={(event) => {console.log(event)}} onKeyDown={(event) => {controls(event)}}>
     <h1 style={{
           zIndex: 90,
           position: 'absolute',
           color: 'white',
           marginLeft: '20px'
-    }} >Press the + button for help</h1>
+    }} >Press H button for help</h1>
+
+    {clickMe && target &&
+    <div
+        style={{zIndex: 90,
+        position: 'absolute',
+        left: '40%',
+        top: '42%',
+        transform: 'translateX(-40%)',
+        transform: 'translateY(-42%)',
+        color: 'white',
+        width: '400px'
+        }}
+    >
+      <h1 style={{textAlign: 'center'}}>Click the red circle!</h1>
+    </div>
+    }
+
+    {target && <div className='target' style={{
+          zIndex: 90,
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          transform: 'translateX(-50%)',
+          transform: 'translateY(-50%)',
+          background: 'red',
+          width: '50px',
+          height: '50px',
+          opacity: 0.5,
+          borderRadius: "50%",
+          
+    }}
+
+    onClick={() => {setClickMe(false)}}
+    ></div>}
 
     {loading &&
       <h1 style={{
@@ -253,6 +344,9 @@ function App() {
         chooseTruthy={chooseTruthy}
         helpTruthy={helpTruthy}
         setHelpTruthy={setHelpTruthy}
+
+        screenLock={screenLock}
+        setScreenLock={setScreenLock}
         />
 
         

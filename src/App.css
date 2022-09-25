@@ -2,6 +2,11 @@
   /*text-align: center;*/
 }
 
+body {
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
 canvas {
   height: 100vh;
   background: rgb(0, 0, 0);
@@ -11,8 +16,17 @@ canvas {
 
 
 ToDoPage {
-  position: relative;
+  position: absolute;
+  width: 70%;
+  height: 90%;
+  background: white;
   z-index: 50;
   font-size: 20;
   color: red;
+}
+
+.todos-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%
 }

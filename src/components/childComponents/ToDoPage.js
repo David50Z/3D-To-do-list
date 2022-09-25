@@ -51,7 +51,7 @@ function ToDoPage(props) {
         
     }
 
-    console.log("hello!")
+    
 
     
 
@@ -70,6 +70,8 @@ function ToDoPage(props) {
 
                         chosenList={chosenList}
                         setChosenList={setChosenList}
+
+                        setInput={setInput}
                         />
                         
                     )
@@ -80,7 +82,16 @@ function ToDoPage(props) {
 
                 
             </div>
-            <button style={{position: 'relative', color: 'black', fontSize: '30px', marginBottom: '30px'}} onClick={collapsetoDoPage}>Back</button>
+            <button style={{
+                position: 'relative',
+                 color: 'black',
+                 fontSize: '30px',
+                 marginBottom: '0px',
+                 top: '90%',
+                 left: '50%',
+                 transform: 'translateX(-50%)',
+                     
+                     }} onClick={collapsetoDoPage}>Back</button>
 
             <h1 style={{position: 'absolute', color: 'red', left: '3%', top: '90%'}} onClick={() => {
                 let newModels = models

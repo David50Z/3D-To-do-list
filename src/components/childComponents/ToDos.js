@@ -7,13 +7,19 @@ function ToDo(props) {
     let setToDos = props.setToDos
     let h1Style = props.h1Style
 
-    let number = props.number
-    let setNumber = props.setNumber
+    //let number = props.number
+    //let setNumber = props.setNumber
 
     let chosenList = props.chosenList
     let setChosenList = props.setChosenList
 
+    let setAddInput = props.setInput
+
+    let number = props.number
+    let setNumber = props.setNumber
+
     const [input, setInput] = useState('')
+    //const [number, setNumber] = useState(false)
 
 
     //Similar logic to the handleSubmit function
@@ -22,7 +28,7 @@ function ToDo(props) {
         list[0].list.splice(index, 1)
         setChosenList(list)
         //rerenders App.js
-        setNumber(number + 1)
+        setNumber(!number)
     }
     //Similar logic to handleSubmit function
     const handleEdit = (key) => {
@@ -32,7 +38,8 @@ function ToDo(props) {
         let list = chosenList
         list[0].list[index] = input
         setChosenList(list)
-        setNumber(number + 1)
+        setNumber(!number)
+        
         }
     }
 
@@ -44,10 +51,13 @@ function ToDo(props) {
     //const 
 
     return (
-        <div>
+        <div className="todos-container">
+        
             <h2 style={{...h1Style, display: 'inLine'}}>{item}</h2>
-            <input type='text' placeholder="Edit to do"  style={{...h1Style, marginLeft: '20px'}} onChange={handleInput} onKeyDown={(key) => handleEdit(key)} ></input>
-            <button style={{...h1Style, display: 'inline', marginLeft: '20px', fontSize: '20px'}} onClick={handleDelete}>Delete</button>
+                <div>
+                    <input type='text' placeholder="Edit to do"  style={{...h1Style, marginLeft: '20px'}} onChange={handleInput} onKeyDown={(key) => handleEdit(key)} ></input>
+                    <button style={{...h1Style, display: 'inline', marginLeft: '20px', fontSize: '20px'}} onClick={handleDelete}>Delete</button>
+                </div>
         </div>
     )
 

@@ -24,6 +24,10 @@ const Player = (props) => {
     let helpTruthy = props.helpTruthy
     let setHelpTruthy = props.setHelpTruthy
 
+    let screenLock = props.screenLock
+    let setScreenLock = props.setScreenLock
+
+
     //The camera that will be used to look at our virtual enviorment
     const { camera } = useThree();
     //Like I explained in the useKeyboardControlls hook, no idea!
@@ -94,6 +98,9 @@ const Player = (props) => {
       chooseTruthy={chooseTruthy}  
       helpTruthy={helpTruthy}
       setHelpTruthy={setHelpTruthy}
+
+      screenLock={screenLock}
+      setScreenLock={setScreenLock}
       />
         <mesh ref={ref} />
       </>
