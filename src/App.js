@@ -270,10 +270,10 @@ function App() {
           top: '50%',
           transform: 'translateX(-50%)',
           transform: 'translateY(-50%)',
-          background: 'red',
+          background: 'green',
           width: '50px',
           height: '50px',
-          opacity: 0.5,
+          opacity: 0.4,
           borderRadius: "50%",
           
     }}
